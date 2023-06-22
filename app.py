@@ -6,16 +6,22 @@ app = Flask(__name__)
 
 # Create a function to initialize the database
 def init_db():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('databasetwo.db')
     c = conn.cursor()
+    
     c.execute('''CREATE TABLE IF NOT EXISTS form_data
                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
                  name TEXT,
-                 email TEXT,
-                 message TEXT)''')
-    c.execute('''CREATE TABLE IF NOT EXISTS coupon_data
-                (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                 coupon INTEGER)''')
+                 email TEXT)''')
+
+    # c.execute('''CREATE TABLE IF NOT EXISTS form_data
+    #             (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    #              email TEXT,
+    #              cpfnumber TEXT)''')
+    
+    # c.execute('''CREATE TABLE IF NOT EXISTS coupon_data
+    #             (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    #              coupon INTEGER)''')
     conn.commit()
     conn.close()
 
@@ -28,25 +34,37 @@ init_db()
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        name = request.form['name']
         email = request.form['email']
-        message = request.form['message']
+        name = request.form['name']
+        # cpfnumber = request.form['cpfnumber']
+        # message = request.form['message']
+        # cpfnumber = request.form['cpfnumber']
 
         # Read the Excel sheet data
         excel_data = pd.read_excel('data.xlsx')
 
         # Check if the data already exists in the Excel sheet
-        matching_data = excel_data[(excel_data['name'] == name) & (excel_data['email'] == email)]
+        matching_data = excel_data[(excel_data['email'] == email)]
 
         if  matching_data.empty:
             return render_template('invalid.html')
         else:
-            # Add the data to the database
             conn = sqlite3.connect('database.db')
             c = conn.cursor()
-            c.execute('INSERT INTO form_data (name, email, message) VALUES (?, ?, ?)', (name, email, message))
-            conn.commit()
+            c.execute('SELECT * FROM form_data WHERE name=? AND email=?', (name, email))
+            stored_data = c.fetchone()
             conn.close()
+
+            if stored_data:
+                return render_template('already_filled.html')
+            else:
+                # Add the data to the database
+                conn = sqlite3.connect('database.db')
+                c = conn.cursor()
+                c.execute('INSERT INTO form_data (name, email) VALUES (?, ?)', (name, email))
+
+            conn.commit()
+            # conn.close()
 
             return render_template('success.html')
 
@@ -56,7 +74,7 @@ def index():
     # Route to display the database content
 @app.route('/data')
 def data():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('databasetwo.db')
     c = conn.cursor()
     c.execute('SELECT * FROM form_data')
     data = c.fetchall()
@@ -78,7 +96,7 @@ def data():
 # Route to clear the database
 @app.route('/clear', methods=['GET'])
 def clear_data():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('databasetwo.db')
     c = conn.cursor()
     c.execute('DELETE FROM form_data')
     conn.commit()
