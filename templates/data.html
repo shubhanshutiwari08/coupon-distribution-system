@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Data</title>
+    <style>
+        .duplicate {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            {% set duplicate_class = 'duplicate' if row in duplicates else '' %}
+            <tr class="{{ duplicate_class }}">
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
