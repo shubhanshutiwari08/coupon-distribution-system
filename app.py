@@ -85,10 +85,10 @@ def clear_data():
     conn.close()
     return "Database cleared successfully"
 
-@app.route('/final', methods=['GET'])
+@app.route('/final', methods=['GET','POST'])
 def final_coupon():
-    if request.method == 'POST':
-        coupon = request.form['coupon']
+    # if request.method == 'POST':
+    #     coupon = request.form['coupon']
     return render_template("final.html")
 
 # Run the Flask application
