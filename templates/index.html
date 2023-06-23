@@ -9,24 +9,24 @@
   <body>
     <nav class="navbar navbar-expand-lg " style="background-color: #e3f2fd;">
         <div class="container">
-          <a class="navbar-brand" href="#">Gail India Limited</a>
+          <a class="navbar-brand" href="/">Gail India Limited</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="/admin">Admin</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
     <div class="container">
-        <h1>Coupon Distribution System</h1>
+        <h1 class="text-center">Coupon Distribution System</h1>
 
         <!-- <form action=""method ="post">
 
@@ -43,30 +43,24 @@
             <button type="submit" class="btn btn-primary">Submit</button>
           </form> -->
 
-          <h1>Data Input Form</h1>
-          <form action="/" method="POST">
-            
-            <!-- <label for="name">Name:</label>
-            <input type="text" name="name" required><br><br>  -->
-            
-            <label for="email">Email:</label>
-            <input type="email" name="email" required><br><br>
+          <h3>Kindly enter your details to awail coupons:</h2>
+          <div class="position-absolute top-50 start-50 translate-middle shadow p-5 mb-5 bg-body-tertiary rounded">
+              <form action="/coupon" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" name="name" required><br><br>
 
-            <label for="name">CPF Number:</label>
-            <input type="text" name="name" required><br><br> 
+                <label for="cpfno">CPF Number:</label>
+                <input type="text" name="cpfno" required><br><br>
             
-            <!-- <label for="cpfnumber">CPF Number:</label>
-            <input type="text" name="cpfnumber" required><br><br> -->
-
-  
-            <!-- <label for="message">Message:</label>
-            <textarea name="message" required></textarea><br><br> -->
-
+                <label for="email">Email:</label>
+                <input type="email" name="email" required><br><br>
             
+                <label for="num_coupons">Number of coupons:</label>
+                <input type="number" name="num_coupons" required><br><br>
             
-            <input type="submit" value="Submit">
-        </form>
-
+                <input type="submit" value="Submit">
+              </form>
+          </div>
     </div>
 
 
