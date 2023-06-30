@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Success</title>
+    <title>Coupon Generated | Success</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
@@ -10,10 +10,8 @@
         <div class="position-absolute top-50 start-50 translate-middle shadow p-5 mb-5 bg-body-tertiary rounded">
             <h3>Cpf Number: </h3>
             <p>{{cpfno}}</p>
-            <h3>Coupon Numbers:</h3>
-            {% for coupon in coupons %}
-                <p>{{ coupon }}</p>
-            {% endfor %}
+            <h3>QR Code:</h3>
+    <img src="data:image/png;base64,{{ qr_image_data }}" alt="QR Code">
             <a class="btn btn-secondary" id = "prn"  role="button">Print Ticket</a>
             <a class="btn btn-secondary" href="/">Go back to the form</a>
         </div>

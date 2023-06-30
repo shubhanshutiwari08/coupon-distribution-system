@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Coupon Distribution System</title>
+    <title>Coupon Distribution System | Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
   <body>
@@ -46,17 +46,21 @@
           <h3>Kindly enter your details to awail coupons:</h2>
           <div class="position-absolute top-50 start-50 translate-middle shadow p-5 mb-5 bg-body-tertiary rounded">
               <form action="/coupon" method="POST">
-                <label for="name">Name:</label>
-                <input type="text" name="name" required><br><br>
-
+                <!-- <label for="name">Name:</label>
+                <input type="text" name="name" required><br><br> -->
+                <br><br>
                 <label for="cpfno">CPF Number:</label>
-                <input type="text" name="cpfno" required><br><br>
+                <input type="text" name="cpfno" placeholder="CPF number" required>
+                <br>
+                <br>
+
             
-                <label for="email">Email:</label>
-                <input type="email" name="email" required><br><br>
+                <!-- <label for="email">Email:</label>
+                <input type="email" name="email" required><br><br> -->
             
                 <label for="num_coupons">Number of coupons:</label>
                 <input type="number" name="num_coupons" required><br><br>
+                <br><br>
             
                 <input type="submit" value="Submit">
               </form>
